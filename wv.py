@@ -1,13 +1,12 @@
 import pandas as pd
 df = pd.read_excel('delay.xlsx')
-column_names = df.columns
 stage_delay_df = df[(df['Parameter']=='stage_delay')]
-file_path = 'test.xlsx'
-stage_delay_df.to_excel(file_path, index=False)
+# file_path = 'test.xlsx'
+# stage_delay_df.to_excel(file_path, index=False)
 
 
-dfnew = pd.read_excel('test.xlsx')
-sorted_df = dfnew.sort_values(by=['Temp','ProcessCorner'])
+# dfnew = pd.read_excel('test.xlsx')
+sorted_df = stage_delay_df.sort_values(by=['Temp','ProcessCorner'])
 
 
 def highlight_rows(row):
