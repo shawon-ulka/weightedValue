@@ -1,10 +1,10 @@
 import pandas as pd
 from pandas import ExcelWriter
 from openpyxl import load_workbook
-df = pd.read_excel('delay.xlsx')
+df = pd.read_excel('55LPx.xlsx')
 stage_delay_df = df[(df['Parameter']=='stage_delay')]
 iddq_stage_df =  df[(df['Parameter']=='iddq_stage')]
-excel_file = 'output.xlsx'
+excel_file = 'output_55LPx.xlsx'
 import xlsxwriter
 
 df_output=[]
