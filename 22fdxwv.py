@@ -1,13 +1,16 @@
 import pandas as pd
 from pandas import ExcelWriter
 from openpyxl import load_workbook
-df = pd.read_excel('RVT_C4_1000vs1020.xlsx')
+df = pd.read_excel('EG_IP007379_V1.0_0.0_VS_V1.0_2.0.xlsx',header=2)
 stage_delay_df = df[(df['Parameter']=='stage_delay')]
 iddq_stage_df =  df[(df['Parameter']=='iddq_stage')]
-excel_file = 'output_RVT_C4_1000vs1020.xlsx'
+excel_file = 'output_EG_IP007379_V1.0_0.0_VS_V1.0_2.0.xlsx'
 import xlsxwriter
 
 df_output=[]
+
+# print(stage_delay_df)
+# print(iddq_stage_df)
 
 def test(param):
     fil_df = df[(df['Parameter']==param)]
@@ -59,14 +62,17 @@ def test(param):
 
 
     filtered_df = sorted_df[(sorted_df['PexCorner'] =='Nominal') & (sorted_df['Temp'] == 25) & (sorted_df['ProcessCorner']=='TT')]
+    print(filtered_df)
     write_data(filtered_df)
-    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmin') & (sorted_df['Temp'] == -40) & (sorted_df['ProcessCorner']=='FFG')]
+    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmin') & (sorted_df['Temp'] == -40) & (sorted_df['ProcessCorner']=='FF')]
     write_data(filtered_df)
-    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmin') & (sorted_df['Temp'] == 125) & (sorted_df['ProcessCorner']=='FFG')]
+    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmin') & (sorted_df['Temp'] == 125) & (sorted_df['ProcessCorner']=='FF')]
     write_data(filtered_df)
-    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmax') & (sorted_df['Temp'] == -40) & (sorted_df['ProcessCorner']=='SSG')]
+    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmax') & (sorted_df['Temp'] == -40) & (sorted_df['ProcessCorner']=='SS')]
+    # print(filtered_df)
     write_data(filtered_df)
-    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmax') & (sorted_df['Temp'] == 125) & (sorted_df['ProcessCorner']=='SSG')]
+    filtered_df = sorted_df[(sorted_df['PexCorner'] =='FuncCmax') & (sorted_df['Temp'] == 125) & (sorted_df['ProcessCorner']=='SS')]
+    # print(filtered_df)
     write_data(filtered_df)
 
     styled_df= sorted_df.style.apply(highlight_rows, axis=1)

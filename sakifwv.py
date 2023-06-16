@@ -1,7 +1,7 @@
 import pandas as pd
-
-readFile='eng_vs_2.0.xlsx'
-writeFile="Ritu_Apu_Eng_V2.0.xlsx"
+import xlsxwriter
+readFile='LVT_C24_IP007325.xlsx'
+writeFile="Output_LVT_C24_IP007325.xlsx"
 
 def checktargetInv(dct,valType):
     if "inv"in dct['IP_Name'].lower():
@@ -9,7 +9,7 @@ def checktargetInv(dct,valType):
     else:
         return dct[valType]*.1
 
-df=pd.read_excel(readFile,header=2)
+df=pd.read_excel(readFile)
 # comparison =df[1:]
 filtered=df[["IP_Name","Tech","VT","Track","Parameter","PexCorner" ,"PexTemp","Unit","TargetValue","ReferenceValue"]]
 filtered=filtered.sort_values(by=['Parameter',"PexTemp","PexCorner","VT"])
@@ -41,4 +41,4 @@ leakage.to_excel(writer,sheet_name="leakage")
 delay.to_excel(writer,sheet_name="delay")
 leakage_sum.to_excel(writer,sheet_name="leakage_avg")
 delay_sum.to_excel(writer,sheet_name="Delay_avg")
-writer.save()
+writer.close()
